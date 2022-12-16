@@ -1,23 +1,25 @@
 import * as Pixi from 'pixi.js'
-import { align } from '~/utils/position'
+import { gsap } from 'gsap'
+import { PixiPlugin } from 'gsap/PixiPlugin'
+import config from '~/core/config'
+import manifest from '~/resources/manifest.json'
+import Game from '~/scenes/game'
 
-const width = 1280
-const height = 720
+const width = config.width
+const height = config.height
+
+gsap.registerPlugin(PixiPlugin)
+PixiPlugin.registerPIXI(Pixi)
 
 export const app = new Pixi.Application({
   width,
   height,
 })
 
-export const core = () => {
-  const title = new Pixi.Text('Hello world', { fill: '#fff' })
-
-  title.position.set(align(title, { x: 'center' }).x, align(title, { y: 'center' }).y)
-  app.stage.addChild(title)
-}
-
 const resizeApp = () => {
-  const ratio = window.innerWidth / width
+  const ratioX = window.innerWidth / width
+  const ratioY = window.innerHeight / height
+  const ratio = ratioX < ratioY ? ratioX : ratioY
 
   app.stage.scale.x = app.stage.scale.y = ratio
 
@@ -31,5 +33,23 @@ const init = () => {
 }
 
 init()
+
+export const core = () => {
+  init()
+
+  const bundles = manifest.bundles.map((bundle) => {
+    return {
+      ...bundle,
+      assets: bundle.assets.map((asset) => ({
+        ...asset,
+        srcs: `${config.assetsPath}/${bundle.name}/${asset.srcs}`,
+      })),
+    }
+  })
+  Pixi.Assets.init({ manifest: { bundles } })
+
+  const game = new Game()
+  game.run()
+}
 
 export default core

@@ -15,12 +15,15 @@
   "author": "ryosuke mori",
   "license": "ISC",
   "dependencies": {
+    "@pixi/assets": "^7.0.5",
     "@unocss/reset": "^0.47.6",
     "express": "^4.18.2",
+    "fs-extra": "^11.1.0",
     "gsap": "^3.11.3",
     "pixi.js": "^7.0.5"
   },
   "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.11.15",
     "@types/typescript": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^5.46.1",

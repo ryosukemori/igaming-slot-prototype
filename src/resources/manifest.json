@@ -1,0 +1,41 @@
+{
+  "bundles": [
+    {
+      "name": "symbol",
+      "assets": [
+        {
+          "name": "ten",
+          "srcs": "10.png"
+        },
+        {
+          "name": "J",
+          "srcs": "J.png"
+        },
+        {
+          "name": "Q",
+          "srcs": "Q.png"
+        },
+        {
+          "name": "K",
+          "srcs": "K.png"
+        },
+        {
+          "name": "A",
+          "srcs": "A.png"
+        },
+        {
+          "name": "SP1",
+          "srcs": "SP1.png"
+        },
+        {
+          "name": "SP2",
+          "srcs": "SP2.png"
+        },
+        {
+          "name": "SP3",
+          "srcs": "SP3.png"
+        }
+      ]
+    }
+  ]
+}

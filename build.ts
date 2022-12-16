@@ -1,8 +1,9 @@
-import { build, BuildOptions } from 'esbuild'
+import { build } from 'esbuild'
 import { copyFile } from 'fs'
-import { dependencies } from './package.json'
+import fse from 'fs-extra'
 
-copyFile('public/index.html', 'dist/index.html', () => {})
+copyFile('public/index.html', 'dist/index.html', (e) => console.error(e?.message))
+fse.copySync('src/assets', 'dist/assets')
 
 const entryFile = 'src/index.ts'
 const watch = process.env.WATCH === 'true' || false
